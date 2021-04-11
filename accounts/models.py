@@ -21,7 +21,7 @@ class Agent(models.Model):
         db_table = 'agent'
 
     def __str__(self):
-        return self.agent_id
+        return str(self.agent_id)
 
 
 
@@ -37,7 +37,7 @@ class BuySellTransaction(models.Model):
         managed = False
         db_table = 'buy_sell_transaction'
     def __str__(self):
-        return self.tsnc_id
+        return str(self.tsnc_id)
 
 
 class Buyer(models.Model):
@@ -48,7 +48,7 @@ class Buyer(models.Model):
         managed = False
         db_table = 'buyer'
     def __str__(self):
-        return self.buyer_id
+        return str(self.buyer_id)
 
 
 
@@ -62,7 +62,7 @@ class Login(models.Model):
         managed = False
         db_table = 'login'
     def __str__(self):
-        return self.username
+        return str(self.username)
 
 
 class Owner(models.Model):
@@ -73,7 +73,7 @@ class Owner(models.Model):
         managed = False
         db_table = 'owner'
     def __str__(self):
-        return self.owner_id
+        return str(self.owner_id)
 
 
 class Property(models.Model):
@@ -94,7 +94,7 @@ class Property(models.Model):
         managed = False
         db_table = 'property'
     def __str__(self):
-        return self.property_id
+        return str(self.property_id)
 
 
 class RentTransaction(models.Model):
@@ -110,7 +110,7 @@ class RentTransaction(models.Model):
         db_table = 'rent_transaction'
 
     def __str__(self):
-        return self.tsnc_id
+        return str(self.tsnc_id)
 
 
 class Tenant(models.Model):
@@ -121,7 +121,7 @@ class Tenant(models.Model):
         managed = False
         db_table = 'tenant'
     def __str__(self):
-        return self.tenant_id
+        return str(self.tenant_id)
 
 
 class User(models.Model):
@@ -136,4 +136,4 @@ class User(models.Model):
         managed = False
         db_table = 'user'
     def __str__(self):
-        return self.user_id
+        return str(self.user_id)
