@@ -1,0 +1,46 @@
+{% extends "agent_base.html" %}
+{% block content %}
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="margin: 10px;">
+        <input type="checkbox" class="btn-check" id="btncheck0" autocomplete="off" style="margin: 10px;">
+        <label class="btn btn-outline-primary" for="btncheck0">All</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" style="margin: 10px;">
+        <label class="btn btn-outline-primary" for="btncheck1">For Sale</label>
+      
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" style="margin: 10px;">
+        <label class="btn btn-outline-primary" for="btncheck2">Sold</label>
+      
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" style="margin: 10px;">
+        <label class="btn btn-outline-primary" for="btncheck3">For Rent</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off" style="margin: 10px;">
+        <label class="btn btn-outline-primary" for="btncheck4">Rented</label>
+    </div>
+ 
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">property_id</th>
+                <th scope="col">Type</th>
+                <th scope="col">Size</th>
+                <th scope="col">No of bedrooms</th>
+                <th scope="col">Address</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in agent_properties %}
+                <tr>
+                    <td>{{ property.property_id }}</td>
+                    <td>{{ property.Type }}</td>
+                    <td>{{ property.Size }}</td>
+                    <td>{{ property.no_of_bedrooms }}</td>
+                    <td>{{ property.Address }}</td>
+                    <td>{{ property.Amount }}</td>
+                    <td>{{ property.Status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

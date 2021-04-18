@@ -1,0 +1,76 @@
+{% extends "agent_base.html" %}
+{% block content %}
+    <div class="card text-white bg-dark">
+        <h5 class="card-header">Add / Update User</h5>
+        <div class="card-body">
+        
+        <form class="row g-3">
+            <div class="col-md-6"><br>
+                <label for="validationDefault01" class="form-label">user_id</label>
+                <input type="text" class="form-control" id="validationDefault01" required>
+            </div><br>
+            <div class="col-md-6"><br>
+                <label for="validationDefault02" class="form-label">username</label>
+                <input type="text" class="form-control" id="validationDefault02" required>
+            </div><br>
+            <div class="col-md-6"><br>
+                <label for="validationDefault03" class="form-label">first_name</label>
+                <input type="text" class="form-control" id="validationDefault03" required>
+            </div><br>
+            <div class="col-md-6"><br>
+                <label for="validationDefault04" class="form-label">last_name</label>
+                <input type="text" class="form-control" id="validationDefault04" required>
+            </div><br>
+            <div class="col-md-8"><br>
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1">
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault05" class="form-label">Contact No</label>
+                <input type="text" class="form-control" id="validationDefault05" required>
+            </div><br>
+
+            <div class="col-md-12 btn-group" style="margin: 10px;" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" style="margin: 10px;" id="btncheck1" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck1">Owner</label>
+                <div class="col-md-4"><br>
+                    <label for="validationDefault06" class="form-label">owner_id</label>
+                    <input type="text" class="form-control" id="validationDefault06" required>
+                </div><br>
+            </div>
+
+            <div class="col-md-12 btn-group" style="margin: 10px;" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" style="margin: 10px;" id="btncheck2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck2">Buyer</label>
+                <div class="col-md-4"><br>
+                    <label for="validationDefault07" class="form-label">buyer_id</label>
+                    <input type="text" class="form-control" id="validationDefault07" required>
+                </div><br>
+            </div>
+
+            <div class="col-md-12 btn-group" style="margin: 10px;" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" style="margin: 10px;" id="btncheck3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btncheck3">Tenant</label>
+                <div class="col-md-4"><br>
+                    <label for="validationDefault08" class="form-label">tenant_id</label>
+                    <input type="text" class="form-control" id="validationDefault08" required>
+                </div><br>
+            </div>
+
+            <div class="col-12">
+                <div class="form-check"><br>
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                    Agree to terms and conditions
+                    </label>
+                </div><br>
+                </div><br>
+                <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div><br>
+        </form>
+
+        </div>
+    </div>
+
+{% endblock content %}

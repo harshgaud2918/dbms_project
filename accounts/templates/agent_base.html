@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/agent_base.css">
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>agent_base</title>
+    {% endif %}
+</head>
+<body>
+  <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 10px;">
+        <a class="navbar-brand" href="#">Real Estate kya? </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="#">Properties</a>
+            <a class="nav-item nav-link active" href="#">Customers</a>
+            <a class="nav-item nav-link active" href="#">Transactions</a>
+          </div>
+        </div>
+    </nav>
+    <!-- Sidenav -->
+    <div class="sidenav">
+      <div class="card" style="width: 20rem; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">agent id</h5>
+            <h6 class="card-subtitle mb-2 text-muted">agent name</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">detail 1</li>
+                <li class="list-group-item">detail 2</li>
+                <li class="list-group-item">detail 3</li>
+            </ul>
+        </div>
+    </div>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">My Commissions</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Sellers</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Seller</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Buyers</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Buyer</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Tenants</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Tenant</button>
+    </div>
+    <!-- content -->
+    <div class="main">
+        <div class="col-md-12 col-sm-12">
+          {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

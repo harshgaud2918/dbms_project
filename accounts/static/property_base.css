@@ -1,0 +1,45 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+
+}
+
+.sidenav {
+    /* margin: 10px; */
+    height: 100%;
+    background-color: #000;
+    overflow-x: hidden;    
+    padding: 3%;
+}
+ 
+.main {
+    margin: 10px;
+    padding: 10%;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 25%; 
+    }
+
+    .sidenav{
+        width: 25%;
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        left: 0;
+    }
+}
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}
