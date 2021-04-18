@@ -65,3 +65,5 @@ def add_user(request):
 
 def agent_dash(request):
     return render(request, 'agent_dash.html')
+def index(request):
+    return render(request, 'dashboard.html')
