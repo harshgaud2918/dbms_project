@@ -9,6 +9,7 @@ class DateInput(forms.DateInput):
 class DateTimeInput(forms.DateTimeInput):
     input_type = 'datetime-local'
 
+
 class UserRegistrationForm(ModelForm):
     class Meta:
         model = User
@@ -34,14 +35,3 @@ class AddPropertyForm(ModelForm):
 
             self.fields[field].widget.attrs.update({'class': 'form-control'})
 
-class AddPropertyForm(ModelForm):
-    class Meta:
-        model = Property
-        fields = '__all__'
-        
-
-    def __init__(self, *args, **kwargs):
-        super(AddPropertyForm, self).__init__(*args, **kwargs)
-        for field in self.fields:
-
-            self.fields[field].widget.attrs.update({'class': 'form-control'})

@@ -33,17 +33,17 @@
     <div class="sidenav">
       <div class="card" style="width: 20rem; margin: 10px;">
         <div class="card-body">
-            <h5 class="card-title">agent id</h5>
-            <h6 class="card-subtitle mb-2 text-muted">agent name</h6>
+            <h5 class="card-title">Agent ID :{{agent.agent_id}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Username   :  {{request.user}}</h6>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">detail 1</li>
-                <li class="list-group-item">detail 2</li>
-                <li class="list-group-item">detail 3</li>
+                <li class="list-group-item">Name : {{agent.first_name}} {{agent.last_name}}</li>
+                <li class="list-group-item">Email : {{agent.email}}</li>
+                <li class="list-group-item">Contact : {{agent.contact}}</li>
             </ul>
         </div>
     </div>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button>
+    <a href="{% url 'add_property' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button></a>
+    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
     <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">My Commissions</button>
     <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Sellers</button>
     <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Seller</button>

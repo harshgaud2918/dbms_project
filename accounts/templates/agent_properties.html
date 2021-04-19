@@ -30,15 +30,15 @@
             </tr>
         </thead>
         <tbody>
-            {% for property in agent_properties %}
+            {% for property in properties %}
                 <tr>
                     <td>{{ property.property_id }}</td>
-                    <td>{{ property.Type }}</td>
-                    <td>{{ property.Size }}</td>
-                    <td>{{ property.no_of_bedrooms }}</td>
-                    <td>{{ property.Address }}</td>
-                    <td>{{ property.Amount }}</td>
-                    <td>{{ property.Status }}</td>
+                    <td>{{ property.type }}</td>
+                    <td>{{ property.size }}</td>
+                    <td >{{ property.no_of_bedrooms }}</td>
+                    <td>{{ property.address }}</td>
+                    <td>{{ property.amount }}</td>
+                    <td>{{ property.status }}</td>
                 </tr>
             {% endfor %}
         </tbody>

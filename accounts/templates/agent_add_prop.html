@@ -5,79 +5,69 @@
         <h5 class="card-header">Add / Update Property</h5>
         <div class="card-body">
         
-        <form class="row g-3">
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
             <div class="col-md-4"><br>
             <label for="validationDefault01" class="form-label">property_id</label>
-            <input type="text" class="form-control" id="validationDefault01" required>
+            <!-- <input type="text" class="form-control" id="validationDefault01" required> -->
+            <div>{{form.property_id}}</div>
             </div>
             <br>
             <div class="col-md-4"><br>
-            <label for="validationDefault02" class="form-label">owner_id</label>
-            <input type="text" class="form-control" id="validationDefault02" required>
+            <label for="validationDefault02" class="form-label">Owner_id</label>
+            <div>{{form.owner}}</div>
             </div><br>
             <div class="col-md-4"><br>
-                <label for="validationDefault03" class="form-label">agent_id</label>
-                <input type="text" class="form-control" id="validationDefault02" required>
+                <label for="validationDefault03" class="form-label">Agent_id</label>
+                <div>{{form.agent}}</div>
                 </div><br>
             <div class="col-md-12"><br>
             <label for="validationDefault04" class="form-label">Address</label>
-            <input type="text" class="form-control" id="validationDefault09" required>
+            <div>{{form.address}}</div>
             </div><br>
             <div class="col-md-4"><br>
             <label for="validationDefault05" class="form-label">City</label>
-            <input type="text" class="form-control" id="validationDefault03" required>
+            <div>{{form.city}}</div>
             </div><br>
             <div class="col-md-4"><br>
             <label for="validationDefault06" class="form-label">State</label>
             <br>
-            <select class="form-select" id="validationDefault04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-            </select>
+            <div>{{form.state}}</div>
             </div><br>
             <div class="col-md-4"><br>
             <label for="validationDefault07" class="form-label">pincode</label>
-            <input type="text" class="form-control" id="validationDefault05" required>
+            <div>{{form.pincode}}</div>
             </div><br>
             <div class="col-md-4"><br>
             <label for="validationDefault08" class="form-label">No. of bedrooms</label>
             <br>
-            <select class="form-select" id="validationDefault04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-            </select>
+            <div>{{form.no_of_bedrooms}}</div>
             </div><br>
             <div class="col-md-4"><br>
                 <label for="validationDefault09" class="form-label">Size (in sq. feet)</label>
-                <input type="text" class="form-control" id="validationDefault02" required>
+                <div>{{form.size}}</div>
             </div><br>
             <div class="col-md-4"><br>
                 <label for="validationDefault10" class="form-label">Type</label>
-                <input type="text" class="form-control" id="validationDefault02" required>
+                <div>{{form.type}}</div>
             </div><br>
 
             <div class="col-md-6"><br>
                 <label for="validationDefault11" class="form-label">Status</label>
                 <br>
-                <select class="form-select" id="validationDefault04" required>
-                    <option selected disabled value="">Choose...</option>
-                    <option>...</option>
-                </select>
+                <div>{{form.status}}</div>
             </div><br>
 
             <div class="col-md-6"><br>
                 <label for="validationDefault12" class="form-label">Amount</label>
-                <input type="text" class="form-control" id="validationDefault01" required>
+                <div>{{form.amount}}</div>
             </div><br>
 
-            <div class="col-12">
-            <div class="form-check"><br>
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                <label class="form-check-label" for="invalidCheck2">
-                Agree to terms and conditions
-                </label>
-            </div><br>
-            </div><br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
             <div class="col-12">
             <button class="btn btn-primary" type="submit">Submit form</button>
             </div><br>
