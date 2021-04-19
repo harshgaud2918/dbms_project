@@ -143,3 +143,9 @@ def agent_dash(request):
 
 def index(request):
     return render(request, 'login_as.html')
+
+def rent_transaction(request):
+    return render(request, 'rent_transaction.html')
+
+def buy_sell_transaction(request):
+    return render(request, 'buy_sell_transaction.html')

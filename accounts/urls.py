@@ -19,8 +19,9 @@ urlpatterns = [
     path(route='add_property', view=views.add_property, name="add_property"),
     path(route='add_user', view=views.add_user, name="add_user"),
 
-    path(route='agent_dash', view=views.agent_dash, name="agent_dash")
+    path(route='agent_dash', view=views.agent_dash, name="agent_dash"),
     #path(route='dashboard', view=views.dashboard, name="dashboard"),
     
-	
+	path(route='rent_transaction', view=views.rent_transaction, name="rent_transaction"),
+    path(route='buy_sell_transaction', view=views.buy_sell_transaction, name='buy_sell_transaction')
 ]
