@@ -15,7 +15,7 @@
 </head>
 <body>
   <!-- Navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 10px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-bottom: 10px;">
         <a class="navbar-brand" href="#">Real Estate kya? </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,6 +26,8 @@
             <a class="nav-item nav-link active" href="#">Properties</a>
             <a class="nav-item nav-link active" href="#">Customers</a>
             <a class="nav-item nav-link active" href="#">Transactions</a>
+            <a style="color: aliceblue; margin-left: 850px;margin-top: 5px;" class="hello-msg">Hello, {{request.user}}</a>
+            <a  style=" margin-left: 30px;margin-top: 5px;" class="hello-msg" href="">Logout</a>
           </div>
         </div>
     </nav>
@@ -43,15 +45,12 @@
         </div>
     </div>
     <a href="{% url 'add_property' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button></a>
-    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Agent Properties</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Sellers</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Buyers</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Tenants</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add / Update User</button>
+    <a href="{% url 'view_all_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
+    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Agent Properties</button></a>
     <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Transaction</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View buy-sell Transactions</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Rent Transactions</button>
+    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View My Transactions</button>
+    <br>
+    <br>
     
     </div>
     <!-- content -->

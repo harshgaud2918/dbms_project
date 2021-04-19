@@ -31,7 +31,7 @@
                 <th scope="col">Amount</th>
                 <th scope="col">Status</th>
                 <th scope="col">Owner</th>
-                <th scope="col">Update</th>
+                <th scope="col">Assigned_Agent</th>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
                     <td>{{ property.amount }}</td>
                     <td>{{ property.status }}</td>
                     <td>{{ property.owner }}</td>
-                    <td><a class="btn btn-sm btn-info" href="{% url 'update_property' property.property_id %}">Update</a></td>
+                    <td><a style="margin-left: 25px">{{ property.agent }}</a></td>
                 </tr>
             {% endfor %}
         </tbody>

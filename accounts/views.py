@@ -71,6 +71,14 @@ def agent_properties(request):
     context = {'agent':agent,'properties':properties}
     return render(request, 'agent_properties.html', context)
 
+def view_all_properties(request):
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    properties = Property.objects.all()    
+    context = {'agent':agent,'properties':properties}
+    return render(request, 'view_all_properties.html', context)
+
 def display_property_agent(request):
     context={}
     return render(request, 'property_agent.html', context)
@@ -82,11 +90,31 @@ def display_property_admin(request):
 def add_property(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
     form = AddPropertyForm()
     if request.method == 'POST':
         form = AddPropertyForm(request.POST)
         if form.is_valid():
-            form.save()
+            obj = form.save(commit=False)
+            if obj.has_changed():
+                obj.agent = aid
+            return redirect('agent_dash')
+
+    context = {'agent':agent,'form':form}    
+    return render(request, 'agent_add_prop.html',context)
+
+def update_property(request,pk):
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    prop = Property.objects.get(property_id=pk) 
+    form = AddPropertyForm(instance=prop)
+    if request.method == 'POST':
+        form = AddPropertyForm(request.POST,instance=prop)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            
+            obj.save()
             return redirect('agent_dash')
 
     context = {'agent':agent,'form':form}    

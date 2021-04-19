@@ -11,6 +11,9 @@ urlpatterns = [
     path(route='agent_properties', view=views.agent_properties, name="agent_properties"),
 
     path(route='property_agent', view=views.display_property_agent, name="property_agent"),
+    path(route='update_property/<str:pk>/', view=views.update_property, name="update_property"),
+
+    path(route='view_all_properties', view=views.view_all_properties, name="view_all_properties"),
     path(route='property_admin', view=views.display_property_admin, name="property_admin"),
 
     path(route='add_property', view=views.add_property, name="add_property"),

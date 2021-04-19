@@ -8,7 +8,7 @@
         <form class="row g-3" method="POST">
             {% csrf_token %}
             <div class="col-md-4"><br>
-            <label for="validationDefault01" class="form-label">property_id</label>
+            <label for="validationDefault01" class="form-label">Property_id</label>
             <!-- <input type="text" class="form-control" id="validationDefault01" required> -->
             <div>{{form.property_id}}</div>
             </div>
@@ -19,7 +19,7 @@
             </div><br>
             <div class="col-md-4"><br>
                 <label for="validationDefault03" class="form-label">Agent_id</label>
-                <div>{{form.agent}}</div>
+                <div>{{form.agent}}{{agent.agent_id}}</div>
                 </div><br>
             <div class="col-md-12"><br>
             <label for="validationDefault04" class="form-label">Address</label>
@@ -64,6 +64,8 @@
             </div><br>
 
             <br>
+            <br>
+            {{form.errors}}
             <br>
             <br>
             <br>

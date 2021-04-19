@@ -27,6 +27,7 @@ class AddPropertyForm(ModelForm):
     class Meta:
         model = Property
         fields = '__all__'
+        widgets = {'agent': forms.HiddenInput()}
         
 
     def __init__(self, *args, **kwargs):
