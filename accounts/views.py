@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
+from .filters import *
 
 # Create your views here.
 def login_as(request):
@@ -68,7 +69,10 @@ def agent_properties(request):
     agent = Agent.objects.get(username=username)
     aid = agent.agent_id
     properties = Property.objects.filter(agent=aid)    
-    context = {'agent':agent,'properties':properties}
+    agentfilter=PropertyFilter(request.GET,queryset=properties)
+    properties=agentfilter.qs
+    
+    context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'agent_properties.html', context)
 
 def view_all_properties(request):
@@ -76,7 +80,10 @@ def view_all_properties(request):
     agent = Agent.objects.get(username=username)
     aid = agent.agent_id
     properties = Property.objects.all()    
-    context = {'agent':agent,'properties':properties}
+    agentfilter=PropertyFilter(request.GET,queryset=properties)
+    properties=agentfilter.qs
+    
+    context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'view_all_properties.html', context)
 
 def display_property_agent(request):

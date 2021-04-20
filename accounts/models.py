@@ -77,6 +77,18 @@ class Owner(models.Model):
 
 
 class Property(models.Model):
+    STATUS = (
+			('On_Lease', 'On_Lease'),
+			('For_Lease', 'For_Lease'),
+            ('For_Sale', 'For_Sale'),
+            ('Sold', 'Sold'),
+			) 
+    TYPE = (
+        ('Villa','Villa'),
+        ('Cottage','Cottage'),
+        ('Bungalow','Bungalow'),
+        ('Flat','Flat'),
+    )
     property_id = models.DecimalField(primary_key=True, max_digits=16, decimal_places=0)
     owner = models.ForeignKey(Owner, models.DO_NOTHING)
     address = models.CharField(max_length=64)
@@ -85,8 +97,8 @@ class Property(models.Model):
     pincode = models.DecimalField(max_digits=6, decimal_places=0)
     no_of_bedrooms = models.DecimalField(max_digits=2, decimal_places=0)
     size = models.DecimalField(max_digits=10, decimal_places=0)
-    type = models.CharField(max_length=32)
-    status = models.CharField(max_length=32)
+    type = models.CharField(max_length=32,choices=TYPE)
+    status = models.CharField(max_length=32,choices=STATUS)
     amount = models.DecimalField(max_digits=32, decimal_places=0)
     agent = models.ForeignKey(Agent, models.DO_NOTHING, blank=True, null=True)
 
