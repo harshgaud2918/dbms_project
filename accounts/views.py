@@ -7,6 +7,8 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from .filters import *
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def login_as(request):
@@ -63,7 +65,7 @@ def login_agent(request):
 #         'Status' : 'abc'
 #     }
 # ]
-
+@login_required(login_url='login_as')
 def agent_properties(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -75,6 +77,7 @@ def agent_properties(request):
     context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'agent_properties.html', context)
 
+@login_required(login_url='login_as')
 def view_all_properties(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -86,14 +89,17 @@ def view_all_properties(request):
     context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'view_all_properties.html', context)
 
+@login_required(login_url='login_as')
 def display_property_agent(request):
     context={}
     return render(request, 'property_agent.html', context)
 
+@login_required(login_url='login_as')
 def display_property_admin(request):
     context={}
     return render(request, 'property_admin.html', context)
 
+@login_required(login_url='login_as')
 def add_property(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -110,6 +116,7 @@ def add_property(request):
     context = {'agent':agent,'form':form}    
     return render(request, 'agent_add_prop.html',context)
 
+@login_required(login_url='login_as')
 def update_property(request,pk):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -127,6 +134,7 @@ def update_property(request,pk):
     context = {'agent':agent,'form':form}    
     return render(request, 'agent_add_prop.html',context)
 
+@login_required(login_url='login_as')
 def view_property(request,pk):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -135,6 +143,7 @@ def view_property(request,pk):
     context = {'agent':agent,'property':prop}    
     return render(request, 'view_property_details.html',context)
 
+@login_required(login_url='login_as')
 def add_user(request):
     
     return render(request, 'agent_add_user.html')
@@ -149,6 +158,7 @@ def add_user(request):
 #     context = {'agent': agent}
 #     messages.success(request,username)
 #     return render(request, 'agent_dash.html',context)
+@login_required(login_url='login_as')
 def agent_dash(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -163,19 +173,26 @@ def logoutUser(request):
 def index(request):
     return render(request, 'login_as.html')
 
+@login_required(login_url='login_as')
 def make_rent_transaction(request):
     return render(request, 'make_rent_transaction.html')
-
+@login_required(login_url='login_as')
 def make_buy_sell_transaction(request):
     return render(request, 'make_buy_sell_transaction.html')
 
-
+@login_required(login_url='login_as')
 def view_transactions(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
     aid = agent.agent_id
     buy_sell_transactions = BuySellTransaction.objects.filter(agent=aid) 
     rent_transactions = RentTransaction.objects.filter(agent=aid)   
+
+    bsellfilter=TransactionFilter(request.GET,queryset=buy_sell_transactions)
+    buy_sell_transactions=bsellfilter.qs
+
+    rentfilter=RentFilter(request.GET,queryset=rent_transactions)
+    rent_transactions=rentfilter.qs
         
-    context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'rent_transactions':rent_transactions}
+    context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'rent_transactions':rent_transactions,'bsellfilter':bsellfilter,'rentfilter':rentfilter}
     return render(request, 'view_transactions.html',context)

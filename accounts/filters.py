@@ -1,4 +1,5 @@
 import django_filters
+from django_filters import DateFilter
 from .models import *
 
 class PropertyFilter(django_filters.FilterSet):
@@ -9,3 +10,16 @@ class PropertyFilter(django_filters.FilterSet):
     class Meta:
         model = Property      
         fields = ['property_id','no_of_bedrooms','status','type','size']
+
+
+class TransactionFilter(django_filters.FilterSet):
+    Date_start=DateFilter(field_name="date",lookup_expr='gte')
+    Date_end=DateFilter(field_name="date",lookup_expr='lte')
+    class Meta:
+        model = BuySellTransaction     
+        fields = ['property','buyer','owner']
+
+class RentFilter(django_filters.FilterSet):
+    class Meta:
+        model = RentTransaction    
+        fields = ['property','tenant','owner']
