@@ -27,7 +27,7 @@
             <a class="nav-item nav-link active" href="#">Customers</a>
             <a class="nav-item nav-link active" href="#">Transactions</a>
             <a style="color: aliceblue; margin-left: 850px;margin-top: 5px;" class="hello-msg">Hello, {{request.user}}</a>
-            <a  style=" margin-left: 30px;margin-top: 5px;" class="hello-msg" href="">Logout</a>
+            <a  style=" margin-left: 30px;margin-top: 5px;" class="hello-msg" href="{% url 'logout' %}">Logout</a>
           </div>
         </div>
     </nav>
@@ -47,8 +47,12 @@
     <a href="{% url 'add_property' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button></a>
     <a href="{% url 'view_all_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
     <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Agent Properties</button></a>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Transaction</button>
-    <button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View My Transactions</button>
+    <a href="{% url 'view_transactions' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View My Transactions</button></a>
+    <a href="{% url 'make_buy_sell_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Buy Sell Transaction</button></a>
+    <a href="{% url 'make_rent_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Rent Transaction</button></a>
+    <a href="{% url 'add_user' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add User</button></a>
+    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Assign Role To User</button></a>
+    
     <br>
     <br>
     

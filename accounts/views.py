@@ -127,6 +127,14 @@ def update_property(request,pk):
     context = {'agent':agent,'form':form}    
     return render(request, 'agent_add_prop.html',context)
 
+def view_property(request,pk):
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    prop = Property.objects.get(property_id=pk) 
+    context = {'agent':agent,'property':prop}    
+    return render(request, 'view_property_details.html',context)
+
 def add_user(request):
     
     return render(request, 'agent_add_user.html')
@@ -148,11 +156,26 @@ def agent_dash(request):
     context = {'agent':agent}
     return render(request, 'agent_dash.html',context)
 
+def logoutUser(request):
+	logout(request)
+	return redirect('home')
+
 def index(request):
     return render(request, 'login_as.html')
 
-def rent_transaction(request):
-    return render(request, 'rent_transaction.html')
+def make_rent_transaction(request):
+    return render(request, 'make_rent_transaction.html')
 
-def buy_sell_transaction(request):
-    return render(request, 'buy_sell_transaction.html')
+def make_buy_sell_transaction(request):
+    return render(request, 'make_buy_sell_transaction.html')
+
+
+def view_transactions(request):
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    buy_sell_transactions = BuySellTransaction.objects.filter(agent=aid) 
+    rent_transactions = RentTransaction.objects.filter(agent=aid)   
+        
+    context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'rent_transactions':rent_transactions}
+    return render(request, 'view_transactions.html',context)

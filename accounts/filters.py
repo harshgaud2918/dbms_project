@@ -7,7 +7,5 @@ class PropertyFilter(django_filters.FilterSet):
     Sizegt = django_filters.NumberFilter(field_name='size',lookup_expr='gt')
     Sizelt = django_filters.NumberFilter(field_name='size',lookup_expr='lt')
     class Meta:
-        model = Property
-      
-       
+        model = Property      
         fields = ['property_id','no_of_bedrooms','status','type','size']
