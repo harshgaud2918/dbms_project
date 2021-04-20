@@ -1,6 +1,11 @@
 import django_filters
 from django_filters import DateFilter
 from .models import *
+from django.forms.widgets import DateTimeInput
+from django import forms
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 class PropertyFilter(django_filters.FilterSet):
     Amountgt = django_filters.NumberFilter(field_name='amount', lookup_expr='gt')
@@ -18,8 +23,12 @@ class TransactionFilter(django_filters.FilterSet):
     class Meta:
         model = BuySellTransaction     
         fields = ['property','buyer','owner']
+        widgets = {'date':DateInput()}
+
 
 class RentFilter(django_filters.FilterSet):
+    Date_st=DateFilter(field_name="date",lookup_expr='gte')
+    Date_e=DateFilter(field_name="date",lookup_expr='lte')
     class Meta:
         model = RentTransaction    
         fields = ['property','tenant','owner']

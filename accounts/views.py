@@ -181,18 +181,28 @@ def make_buy_sell_transaction(request):
     return render(request, 'make_buy_sell_transaction.html')
 
 @login_required(login_url='login_as')
-def view_transactions(request):
+def view__buySell_transactions(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
     aid = agent.agent_id
-    buy_sell_transactions = BuySellTransaction.objects.filter(agent=aid) 
-    rent_transactions = RentTransaction.objects.filter(agent=aid)   
+    buy_sell_transactions = BuySellTransaction.objects.filter(agent=aid)       
 
     bsellfilter=TransactionFilter(request.GET,queryset=buy_sell_transactions)
     buy_sell_transactions=bsellfilter.qs
 
+          
+    context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'bsellfilter':bsellfilter}
+    return render(request, 'view_buySell_transactions.html',context)
+
+@login_required(login_url='login_as')
+def view_rent_transactions(request):
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    
+    rent_transactions = RentTransaction.objects.filter(agent=aid)   
     rentfilter=RentFilter(request.GET,queryset=rent_transactions)
     rent_transactions=rentfilter.qs
         
-    context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'rent_transactions':rent_transactions,'bsellfilter':bsellfilter,'rentfilter':rentfilter}
-    return render(request, 'view_transactions.html',context)
+    context = {'agent':agent,'rent_transactions':rent_transactions,'rentfilter':rentfilter}
+    return render(request, 'view_rent_transactions.html',context)
