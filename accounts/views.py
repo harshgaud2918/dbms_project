@@ -238,3 +238,7 @@ def view_rent_transactions(request):
         
     context = {'agent':agent,'rent_transactions':rent_transactions,'rentfilter':rentfilter}
     return render(request, 'view_rent_transactions.html',context)
+
+
+def admin_dash(request):
+    return render(request, 'admin_dash.html')
