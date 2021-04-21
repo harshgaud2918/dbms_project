@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path(route='', view=views.index, name="home"),
-
 	
     path('logout', views.logoutUser, name="logout"),
+    path('logout_admin', views.logoutUser_admin, name="logout_admin"),
     
 	path(route='login_admin', view=views.login_admin, name="login_admin"),
     path(route='login_agent', view=views.login_agent, name="login_agent"),
@@ -29,6 +29,11 @@ urlpatterns = [
 
     path(route='view__buySell_transactions', view=views.view__buySell_transactions, name='view__buySell_transactions'),
     path(route='view_rent_transactions', view=views.view_rent_transactions, name='view_rent_transactions'),
+
+    path(route='view_all_agents', view=views.view_all_agents, name='view_all_agents'),
+
+    path(route='view_agent_sales_report/<str:pk>/', view=views.view_agent_sales_report, name='view_agent_sales_report'),
+    path(route='list_properties', view=views.list_properties, name='list_properties'),
 
     
 ]

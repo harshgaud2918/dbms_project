@@ -15,5 +15,6 @@ admin.site.register(Login)
 admin.site.register(BuySellTransaction)
 admin.site.register(User)
 admin.site.register(RentTransaction)
+admin.site.site_header='Estate Real'
 
 
