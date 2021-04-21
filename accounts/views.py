@@ -161,9 +161,7 @@ def make_rent_transaction(request):
     if request.method == 'POST':               
         Pid = request.POST['property']
         prop = Property.objects.get(property_id=Pid)
-        form = RentTransactionForm(request.POST)     
-        print(form.is_valid())  
-        print(datetime.date.today())    
+        form = RentTransactionForm(request.POST)   
         if form.is_valid():
             print(form.data)            
             obj =  form.save(commit=False)            
@@ -171,7 +169,7 @@ def make_rent_transaction(request):
             obj.agent = agent
             obj.owner = prop.owner
             obj.save()
-            Property.objects.get(property_id=Pid).update(status='On_Lease')
+            Property.objects.filter(property_id=Pid).update(status='On_Lease')
             print(form.data)     
             return redirect('agent_dash')
 
@@ -181,7 +179,33 @@ def make_rent_transaction(request):
 
 @login_required(login_url='login_as')
 def make_buy_sell_transaction(request):
-    return render(request, 'make_buy_sell_transaction.html')
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    form = BuySellTransactionForm()    
+    form.fields['property'].queryset = Property.objects.filter(status='For_Sale').filter(agent=aid)
+    if request.method == 'POST':               
+        Pid = request.POST['property']
+        buyer_id = request.POST['buyer']
+        buyer = Buyer.objects.get(buyer_id=buyer_id)
+        prop = Property.objects.get(property_id=Pid)
+        form = BuySellTransactionForm(request.POST)        
+        if form.is_valid():
+            print(form.data)            
+            obj =  form.save(commit=False)            
+            obj.date = datetime.date.today()
+            obj.agent = agent
+            obj.owner = prop.owner
+            obj.save()
+            Property.objects.filter(property_id=Pid).update(status='Sold')
+            new_owner = Owner(owner_id=buyer_id,user=buyer.user)
+            new_owner.save()
+            Property.objects.filter(property_id=Pid).update(owner=buyer_id)
+            print(form.data)     
+            return redirect('agent_dash')
+
+    context = {'agent':agent,'form':form} 
+    return render(request, 'make_buy_sell_transaction.html',context)
 
 
 @login_required(login_url='login_as')
