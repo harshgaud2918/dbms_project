@@ -13,11 +13,6 @@ import datetime
 
 
 # Create your views here.
-def login_as(request):
-    return render(request, 'login_as.html')
-
-def register(request):
-    return render(request, 'register.html')
 
 def login_admin(request):
     return render(request, 'login_admin.html')
@@ -44,7 +39,7 @@ def login_agent(request):
     return render(request, 'login_agent.html',context)
 
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def agent_properties(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -56,7 +51,7 @@ def agent_properties(request):
     context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'agent_properties.html', context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def view_all_properties(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -68,17 +63,9 @@ def view_all_properties(request):
     context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'view_all_properties.html', context)
 
-@login_required(login_url='login_as')
-def display_property_agent(request):
-    context={}
-    return render(request, 'property_agent.html', context)
 
-@login_required(login_url='login_as')
-def display_property_admin(request):
-    context={}
-    return render(request, 'property_admin.html', context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def add_property(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -95,7 +82,7 @@ def add_property(request):
     context = {'agent':agent,'form':form}    
     return render(request, 'agent_add_prop.html',context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def update_property(request,pk):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -112,7 +99,7 @@ def update_property(request,pk):
     context = {'agent':agent,'form':form}    
     return render(request, 'agent_add_prop.html',context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def view_property(request,pk):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -121,7 +108,7 @@ def view_property(request,pk):
     context = {'agent':agent,'property':prop}    
     return render(request, 'view_property_details.html',context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def add_user(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -136,7 +123,7 @@ def add_user(request):
     context = {'agent':agent,'form':form}    
     return render(request, 'add_user.html',context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def agent_dash(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -155,7 +142,7 @@ def logoutUser(request):
 def index(request):
     return render(request, 'login_as.html')
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def make_rent_transaction(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -181,7 +168,7 @@ def make_rent_transaction(request):
     return render(request, 'make_rent_transaction.html',context)
 
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def make_buy_sell_transaction(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -212,7 +199,7 @@ def make_buy_sell_transaction(request):
     return render(request, 'make_buy_sell_transaction.html',context)
 
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def view__buySell_transactions(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -226,7 +213,7 @@ def view__buySell_transactions(request):
     context = {'agent':agent,'buy_sell_transactions':buy_sell_transactions,'bsellfilter':bsellfilter}
     return render(request, 'view_buySell_transactions.html',context)
 
-@login_required(login_url='login_as')
+@login_required(login_url='home')
 def view_rent_transactions(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
@@ -241,4 +228,38 @@ def view_rent_transactions(request):
 
 
 def admin_dash(request):
-    return render(request, 'admin_dash.html')
+    username = str(request.user)
+
+    properties = Property.objects.all()  
+    total_properties = properties.count() 
+
+    forSale = properties.filter(status='For_Sale').count()
+    forLease = properties.filter(status='for_lease').count()
+    sold = properties.filter(status='Sold').count()
+    onLease = properties.filter(status='on_lease').count()    
+
+    agents = Agent.objects.all()  
+    total_agents = agents.count()
+
+    bs_trans = BuySellTransaction.objects.all()  
+    total_bsTrans = bs_trans.count() 
+
+    rent_trans = RentTransaction.objects.all()  
+    total_rentTrans = rent_trans.count()
+
+    owners = Owner.objects.all()  
+    total_owner = owners.count()
+
+    buyers = Buyer.objects.all()  
+    total_buyer = buyers.count()
+
+    tenants = Tenant.objects.all()  
+    total_tenant = tenants.count()
+    
+    context = {'properties':properties,'total_properties':total_properties,'forSale':forSale,
+    'forLease':forLease,'sold':sold,'onLease':onLease,'agents':agents,'total_agents':total_agents,
+    'bs_trans':bs_trans,'total_bsTrans':total_bsTrans,'rent_trans':rent_trans,'total_rentTrans':total_rentTrans,
+    'owners':owners,'total_owner':total_owner,'buyers':buyers,'total_buyer':total_buyer,'tenants':tenants,
+    'total_tenant':total_tenant}
+
+    return render(request, 'admin_dash.html',context)

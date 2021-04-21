@@ -33,7 +33,17 @@
     </nav>
     <!-- Sidenav -->
     <div class="sidenav">
-      <h1>Administrator</h1>
+      <h1 style="color: aliceblue;">Administrator</h1>
+      <br>
+      <br>
+      <a href="{% url 'add_property' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button></a>
+    <a href="{% url 'view_all_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
+    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Agent Properties</button></a>
+    <a href="{% url 'view__buySell_transactions' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View  Buy Sell Transactions</button></a>
+    <a href="{% url 'view_rent_transactions' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View  Rent Transactions</button></a>
+    <a href="{% url 'make_buy_sell_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Buy Sell Transaction</button></a>
+    <a href="{% url 'make_rent_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Rent Transaction</button></a>
+    
     </div>
     <!-- content -->
     <div class="main">
