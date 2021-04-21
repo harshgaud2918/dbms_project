@@ -82,11 +82,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-<<<<<<< HEAD
         'PASSWORD': 'Mysql',
-=======
-        'PASSWORD': '',
->>>>>>> 0b43ee7a9818f6f48ae05c392dbca8495a303af8
     }
 }
 
