@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static '/admin_base.css' %}">
+    <link rel="stylesheet" href="{% static '/agent_base.css' %}">
 
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
-        <title>admin_base</title>
+        <title>agent_sales</title>
     {% endif %}
 </head>
 <body>
@@ -33,13 +33,20 @@
     </nav>
     <!-- Sidenav -->
     <div class="sidenav">
-      <h1 style="color: aliceblue;">Administrator</h1>
-      <br>
-      <br>
-      <a href="{% url 'view_all_agents' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Agents</button></a>
+      <div class="card" style="width: 20rem; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Agent ID :{{agent.agent_id}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Username   :  {{agent.username}}</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name : {{agent.first_name}} {{agent.last_name}}</li>
+                <li class="list-group-item">Email : {{agent.email}}</li>
+                <li class="list-group-item">Contact : {{agent.contact}}</li>
+            </ul>
+        </div>
+    </div>
     
-    <a href="{% url 'list_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View Properties</button></a>
-    <a href="http://127.0.0.1:8000/admin/accounts/agent/"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Perform CRUD Operations</button></a>
+    <br>
+    <br>
     
     </div>
     <!-- content -->

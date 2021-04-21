@@ -182,7 +182,7 @@ def agent_dash(request):
     context = {'agent':agent,'properties':properties,'agentfilter':agentfilter,'for_lease_count':for_lease_count,
     'for_sale_count':for_sale_count,'on_lease_count':on_lease_count,'sold_count':sold_count,'count':count,
     'rent_count':rent_count,'buy_sell_count':buy_sell_count, 'all_for_sale_count':all_for_sale_count,
- 'all_for_lease_count':all_for_lease_count,'all_on_lease_count':all_on_lease_count,'all_sold_count':all_sold_count,'all_count':all_count}
+    'all_for_lease_count':all_for_lease_count,'all_on_lease_count':all_on_lease_count,'all_sold_count':all_sold_count,'all_count':all_count}
     return render(request, 'agent_dash.html',context)
 
 def logoutUser(request):
@@ -276,8 +276,9 @@ def view_rent_transactions(request):
     context = {'agent':agent,'rent_transactions':rent_transactions,'rentfilter':rentfilter}
     return render(request, 'view_rent_transactions.html',context)
 
-
+@login_required(login_url='home')
 def admin_dash(request):
+
     username = str(request.user)
 
     properties = Property.objects.all()  
@@ -313,3 +314,48 @@ def admin_dash(request):
     'total_tenant':total_tenant}
 
     return render(request, 'admin_dash.html',context)
+
+@login_required(login_url='home')
+def view_all_agents(request):    
+    agents = Agent.objects.all()
+    context = {'agents':agents}
+    return render(request, 'view_all_agents.html',context)
+
+
+@login_required(login_url='home')
+def view_agent_sales_report(request,pk):    
+    agent = Agent.objects.get(agent_id=pk)
+
+    aid = agent.agent_id
+    properties = Property.objects.filter(agent=aid) 
+
+    for_sale= Property.objects.filter(agent=aid,status='for_sale')
+    for_lease= Property.objects.filter(agent=aid,status='for_lease')
+    on_lease= Property.objects.filter(agent=aid,status='On_Lease')
+    sold= Property.objects.filter(agent=aid,status='Sold')
+    for_sale_count=len(for_sale)
+    for_lease_count=len(for_lease)
+    on_lease_count=len(on_lease)
+    sold_count=len(sold)
+    count=for_sale_count+for_lease_count+on_lease_count+sold_count
+
+
+    transaction1=BuySellTransaction.objects.filter(agent=agent)    
+
+    transaction2=RentTransaction.objects.filter(agent=agent)
+    
+
+    
+    context = {'agent':agent,'properties':properties,'for_lease_count':for_lease_count,
+    'for_sale_count':for_sale_count,'on_lease_count':on_lease_count,'sold_count':sold_count,'count':count,
+    'transaction1':transaction1,'transaction2':transaction2 }
+    
+    return render(request, 'view_agent_sales_report.html',context)
+
+@login_required(login_url='home')
+def list_properties(request):    
+    properties = Property.objects.all()    
+    agentfilter=PropertyFilter(request.GET,queryset=properties)
+    properties=agentfilter.qs    
+    context = {'properties':properties,'agentfilter':agentfilter}    
+    return render(request, 'list_properties.html',context)
