@@ -6,7 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
+import datetime
 
 class Agent(models.Model):
     agent_id = models.DecimalField(primary_key=True, max_digits=16, decimal_places=0)
@@ -79,8 +79,8 @@ class Owner(models.Model):
 class Property(models.Model):
     STATUS = (
 			('On_Lease', 'On_Lease'),
-			('For_Lease', 'For_Lease'),
-            ('For_Sale', 'For_Sale'),
+			('for_lease', 'for_lease'),
+            ('for_sale', 'for_sale'),
             ('Sold', 'Sold'),
 			) 
     TYPE = (
@@ -111,7 +111,7 @@ class Property(models.Model):
 
 class RentTransaction(models.Model):
     tsnc_id = models.DecimalField(primary_key=True, max_digits=16, decimal_places=0)
-    date = models.DateField()
+    date = models.DateField(blank=True, null=True,default=datetime.date.today)
     property = models.ForeignKey(Property, models.DO_NOTHING)
     tenant = models.ForeignKey('Tenant', models.DO_NOTHING)
     agent = models.ForeignKey(Agent, models.DO_NOTHING)

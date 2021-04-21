@@ -1,36 +1,42 @@
 {% extends "agent_base.html" %}
 {% block content %}
     <div class="card text-white bg-dark">
-        <h5 class="card-header">Buy - Sell Transaction</h5>
+        <h5 class="card-header">Buy Sell Transaction</h5>
         <div class="card-body">
         
         <form class="row g-3" method="POST">
             {% csrf_token %}
             <div class="col-md-4"><br>
-            <label for="validationDefault01" class="form-label">tsnc_id</label>
+            <label for="validationDefault01" class="form-label">Transaction ID</label>
+            <div>{{form.tsnc_id}}</div>
             </div>
             <br>
+            
             <div class="col-md-4"><br>
-            <label for="validationDefault02" class="form-label">date</label>
-            <div>{{form.owner}}</div>
+                <label for="validationDefault03" class="form-label">Property ID</label>
+                <div>{{form.property}}</div>
+            </div><br>
+            
+            
+            <div class="col-md-4"><br>
+                <label for="validationDefault06" class="form-label">Buyer ID</label>
+                <div>{{form.buyer}}</div>
             </div><br>
             <div class="col-md-4"><br>
-                <label for="validationDefault03" class="form-label">property_id</label>
-                <div>{{form.agent}}</div>
+                <label for="validationDefault04" class="form-label">Agent ID</label>
+                <div>{{form.agent}}{{agent.agent_id}}</div>
             </div><br>
             <div class="col-md-4"><br>
-                <label for="validationDefault04" class="form-label">agent_id</label>
-                <div>{{form.agent}}</div>
-            </div><br>
+                <label for="validationDefault02" class="form-label"></label>
+                <div>{{form.date}}</div>
+                </div><br>
             <div class="col-md-4"><br>
-                <label for="validationDefault05" class="form-label">owner_id</label>
-                <div>{{form.agent}}</div>
+                <label for="validationDefault05" class="form-label"></label>
+                <div>{{form.owner}}</div>
             </div><br>
-            <div class="col-md-4"><br>
-                <label for="validationDefault06" class="form-label">buyer_id</label>
-                <div>{{form.agent}}</div>
-            </div><br>
+            
             <br>
+            
             <br>
             <br>
             
@@ -38,6 +44,9 @@
             <button class="btn btn-primary" type="submit">Submit form</button>
             </div><br>
         </form>
+        <br>
+        
+        {{form.errors}}
 
         </div>
     </div>

@@ -8,6 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import *
 from .filters import *
 from django.contrib.auth.decorators import login_required
+from django import forms
+import datetime
 
 
 # Create your views here.
@@ -41,30 +43,7 @@ def login_agent(request):
     context = {'agents':agents}
     return render(request, 'login_agent.html',context)
 
-# properties = [
-#     {
-#         'property_id' : 'abc',
-#         'Type' : 'abc',
-#         'Size' : 'abc',
-#         'no_of_bedrooms' : 'abc',
-#         'Address' : 'abc',
-#         'Amount' : 'abc',
-#         'Status' : 'abc',
-#         'agent_id' : 'abc'
-#     }
-# ]
 
-# agent_properties = [
-#     {
-#         'property_id' : 'abc',
-#         'Type' : 'abc',
-#         'Size' : 'abc',
-#         'no_of_bedrooms' : 'abc',
-#         'Address' : 'abc',
-#         'Amount' : 'abc',
-#         'Status' : 'abc'
-#     }
-# ]
 @login_required(login_url='login_as')
 def agent_properties(request):
     username = str(request.user)
@@ -109,8 +88,8 @@ def add_property(request):
         form = AddPropertyForm(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
-            if obj.has_changed():
-                obj.agent = aid
+            obj.agent = agent
+            obj.save()
             return redirect('agent_dash')
 
     context = {'agent':agent,'form':form}    
@@ -126,8 +105,7 @@ def update_property(request,pk):
     if request.method == 'POST':
         form = AddPropertyForm(request.POST,instance=prop)
         if form.is_valid():
-            obj = form.save(commit=False)
-            
+            obj = form.save(commit=False)            
             obj.save()
             return redirect('agent_dash')
 
@@ -145,19 +123,19 @@ def view_property(request,pk):
 
 @login_required(login_url='login_as')
 def add_user(request):
-    
-    return render(request, 'agent_add_user.html')
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    form = UserRegistrationForm()
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('agent_dash')
 
-# def agent_dash(request):
-#     storage = messages.get_messages(request)
-#     agentInfo=list()
-#     for message in storage:
-#         username = message
-#     print(username)
-#     agent = Agent.objects.get(username=username)
-#     context = {'agent': agent}
-#     messages.success(request,username)
-#     return render(request, 'agent_dash.html',context)
+    context = {'agent':agent,'form':form}    
+    return render(request, 'add_user.html',context)
+
 @login_required(login_url='login_as')
 def agent_dash(request):
     username = str(request.user)
@@ -175,10 +153,36 @@ def index(request):
 
 @login_required(login_url='login_as')
 def make_rent_transaction(request):
-    return render(request, 'make_rent_transaction.html')
+    username = str(request.user)
+    agent = Agent.objects.get(username=username)
+    aid = agent.agent_id
+    form = RentTransactionForm()    
+    form.fields['property'].queryset = Property.objects.filter(status='for_lease').filter(agent=aid)
+    if request.method == 'POST':               
+        Pid = request.POST['property']
+        prop = Property.objects.get(property_id=Pid)
+        form = RentTransactionForm(request.POST)     
+        print(form.is_valid())  
+        print(datetime.date.today())    
+        if form.is_valid():
+            print(form.data)            
+            obj =  form.save(commit=False)            
+            obj.date = datetime.date.today()
+            obj.agent = agent
+            obj.owner = prop.owner
+            obj.save()
+            Property.objects.get(property_id=Pid).update(status='On_Lease')
+            print(form.data)     
+            return redirect('agent_dash')
+
+    context = {'agent':agent,'form':form} 
+    return render(request, 'make_rent_transaction.html',context)
+
+
 @login_required(login_url='login_as')
 def make_buy_sell_transaction(request):
     return render(request, 'make_buy_sell_transaction.html')
+
 
 @login_required(login_url='login_as')
 def view__buySell_transactions(request):
