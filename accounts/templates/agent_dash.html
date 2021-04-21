@@ -1,59 +1,150 @@
 {% extends "agent_base.html" %}
 {% block content %}
-
-<br>
-<!-- <div class="row mx=3px">
-	<div class="col mx=3px">
-		<div class="card card-body">
-
-			<form method="GET">
-				{{agentfilter.form}}
-		    <button class="btn btn-primary" type="submit">Search</button>
-		  </form>
-
-		</div>
-	</div>
-	
-</div>
-<br> -->
- <h1>Assigned Properties</h1>
- <br>
-    <table class="table table-dark table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Property_Id</th>
-                <th scope="col">Type</th>
-                <th scope="col">Size</th>
-                <th scope="col">Bedrooms</th>
-                <th scope="col">Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Pincode</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Status</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Update</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for property in properties %}
+<h1 style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Agent Dashboard</h1>
+<br><br>
+    <div style="display: flex; justify-content: space-between;">
+        <table class="table table-dark table-striped" style="width: 47%;">
+            <thead style="font-size: x-large;">
                 <tr>
-                    <td>{{ property.property_id }}</td>
-                    <td>{{ property.type }}</td>
-                    <td>{{ property.size }}</td>
-                    <td ><a style="margin-left: 25px">{{ property.no_of_bedrooms }}</a></td>
-                    <td>{{ property.address }}</td>
-                    <td>{{ property.city }}</td>
-                    <td>{{ property.state }}</td>
-                    <td>{{ property.pincode }}</td>
-                    <td>{{ property.amount }}</td>
-                    <td>{{ property.status }}</td>
-                    <td>{{ property.owner }}</td>
-                    <td><a class="btn btn-sm btn-info" href="{% url 'update_property' property.property_id %}">Update</a></td>
+                    <th scope="col">All Properties</th>
+                    <th scope="col">count</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>for_sale</td>
+                    <td>for_sale_count</td>
+                </tr>
+                <tr>
+                    <td>for_rent</td>
+                    <td>for_rent_count</td>
+                </tr>
+                <tr>
+                    <td>sold</td>
+                    <td>sold_count</td>
+                </tr>
+                <tr>
+                    <td>on_lease</td>
+                    <td>on_lease_count</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-dark table-striped" style="width: 47%;">
+            <thead style="font-size: x-large;">
+                <tr>
+                    <th scope="col">Assigned Properties</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>for_sale</td>
+                    <td>for_sale_count</td>
+                </tr>
+                <tr>
+                    <td>for_rent</td>
+                    <td>for_rent_count</td>
+                </tr>
+                <tr>
+                    <td>sold</td>
+                    <td>sold_count</td>
+                </tr>
+                <tr>
+                    <td>on_lease</td>
+                    <td>on_lease_count</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="display: flex; justify-content: space-between;">
+        <table class="table table-dark table-striped" style="width: 47%;">
+            <thead style="font-size: x-large;">
+                <tr>
+                    <th scope="col">Buy-Sell Transactions</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Amount</td>
+                    <td>_amount_</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table class="table table-dark table-striped" style="width: 47%;">
+            <thead style="font-size: x-large;">
+                <tr>
+                    <th scope="col">Rent Transactions</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Amount</td>
+                    <td>_amount_</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <div style="display: flex; justify-content: space-between;">
+        <table class="table table-dark table-striped" style="width: 30%;">
+            <thead style="font-size: large;">
+                <tr>
+                    <th scope="col">Owners Associated</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Amount</td>
+                    <td>_amount_</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <table class="table table-dark table-striped" style="width: 30%;">
+            <thead style="font-size: large;">
+                <tr>
+                    <th scope="col">Buyers Associated</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Amount</td>
+                    <td>_amount_</td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <table class="table table-dark table-striped" style="width: 30%;">
+            <thead style="font-size: large;">
+                <tr>
+                    <th scope="col">Tenants Associated</th>
+                    <th scope="col">count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Amount</td>
+                    <td>_amount_</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+
 {% endblock content %}
 
     
