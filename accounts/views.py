@@ -14,8 +14,27 @@ import datetime
 
 # Create your views here.
 
-def login_admin(request):
-    return render(request, 'login_admin.html')
+def login_admin(request):      
+    if request.method == 'POST':
+        print(request.POST['username'],request.POST['password'])
+        usernam = request.POST['username']
+        passw= request.POST['password']        
+        user = authenticate(request, username=usernam, password=passw)
+        if user is not None  :            
+            login(request, user)   
+            if request.user.is_superuser:
+                return redirect ('admin_dash')    
+            else:
+                messages.warning(request, 'You Are Not Authorized to Enter ! ')
+                return redirect ('logout_admin')
+        messages.warning(request, 'Incorrect Username or Password!')  
+
+    context = {}    
+    return render(request, 'login_admin.html',context)
+
+def logoutUser_admin(request):
+	logout(request)
+	return redirect('login_admin')
 
 def login_agent(request):
     agents = Agent.objects.all()    

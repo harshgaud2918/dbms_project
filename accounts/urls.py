@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path(route='', view=views.index, name="home"),
-
 	
     path('logout', views.logoutUser, name="logout"),
+    path('logout_admin', views.logoutUser_admin, name="logout_admin"),
     
 	path(route='login_admin', view=views.login_admin, name="login_admin"),
     path(route='login_agent', view=views.login_agent, name="login_agent"),
