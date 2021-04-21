@@ -6,7 +6,8 @@
 		<div class="card card-body">
 
 			<form method="GET">
-				{{agentfilter.form}}
+				<p>Property id : {{agentfilter.form.property_id}} No of Bedrooms : {{agentfilter.form.no_of_bedrooms}} Status : {{agentfilter.form.status}} Type : {{agentfilter.form.type}} Size :{{agentfilter.form.size}} </p>
+                <p>Min amount : {{agentfilter.form.Amountgt}} Max amount : {{agentfilter.form.Amountlt}} Minimum Size : {{agentfilter.form.Sizegt}} Maximum Size : {{agentfilter.form.Sizelt}}</p>
 		    <button class="btn btn-primary" type="submit">Search</button>
 		  </form>
 
