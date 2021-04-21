@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'real_estate.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cs241_project',
+        'NAME': 'cs241_proj',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
-        'PASSWORD': 'Aman163Harsh185',
+        'PASSWORD': 'Mysql',
     }
 }
 
