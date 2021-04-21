@@ -21,7 +21,7 @@ urlpatterns = [
     path(route='add_property', view=views.add_property, name="add_property"),
     path(route='add_user', view=views.add_user, name="add_user"),
 
-    path(route='agent_dash', view=views.agent_properties, name="agent_dash"),
+    path(route='agent_dash', view=views.agent_dash, name="agent_dash"),
     #path(route='dashboard', view=views.dashboard, name="dashboard"),
     
 	path(route='make_rent_transaction', view=views.make_rent_transaction, name="make_rent_transaction"),

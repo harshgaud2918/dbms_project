@@ -140,8 +140,12 @@ def add_user(request):
 def agent_dash(request):
     username = str(request.user)
     agent = Agent.objects.get(username=username)
-
-    context = {'agent':agent}
+    aid = agent.agent_id
+    properties = Property.objects.filter(agent=aid)    
+    agentfilter=PropertyFilter(request.GET,queryset=properties)
+    properties=agentfilter.qs
+    
+    context = {'agent':agent,'properties':properties,'agentfilter':agentfilter}
     return render(request, 'agent_dash.html',context)
 
 def logoutUser(request):
