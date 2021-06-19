@@ -1,0 +1,54 @@
+{% extends "agent_base.html" %}
+{% block content %}
+
+<br>
+
+
+
+
+<br>
+<div class="row mx=3px">
+	<div class="col mx=3px">
+		<div class="card card-body">
+
+			<form method="GET">
+				{{rentfilter.form}}
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<h1>Rent Transactions</h1>
+<br>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Transaction_Id</th>
+                <th scope="col">Date</th>
+                <th scope="col">Property_id</th>
+                <th scope="col">Tenant_id</th>
+                <th scope="col">Owner_id</th> 
+                <th scope="col">Amount</th> 
+                             
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in rent_transactions %}
+                <tr>
+                    <td>{{ transaction.tsnc_id }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'view_property' transaction.property.property_id %}">{{ transaction.property}}</a></td>
+                    <td>{{ transaction.tenant }}</td>
+                    <td>{{ transaction.owner }}</td>
+                    <td>{{ transaction.property.amount }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

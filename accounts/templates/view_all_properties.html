@@ -1,0 +1,56 @@
+{% extends "agent_base.html" %}
+{% block content %}
+<br>
+<div class="row mx=3px">
+	<div class="col mx=3px">
+		<div class="card card-body">
+
+			<form method="GET">
+                <p>Property id : {{agentfilter.form.property_id}} No of Bedrooms : {{agentfilter.form.no_of_bedrooms}} Status : {{agentfilter.form.status}} Type : {{agentfilter.form.type}} Size :{{agentfilter.form.size}} </p>
+                <p>Min amount : {{agentfilter.form.Amountgt}} Max amount : {{agentfilter.form.Amountlt}} Minimum Size : {{agentfilter.form.Sizegt}} Maximum Size : {{agentfilter.form.Sizelt}}</p>
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+ 
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Property_Id</th>
+                <th scope="col">Type</th>
+                <th scope="col">Size</th>
+                <th scope="col">Bedrooms</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Assigned_Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for property in properties %}
+                <tr>
+                    <td>{{ property.property_id }}</td>
+                    <td>{{ property.type }}</td>
+                    <td>{{ property.size }}</td>
+                    <td ><a style="margin-left: 25px">{{ property.no_of_bedrooms }}</a></td>
+                    <td>{{ property.address }}</td>
+                    <td>{{ property.city }}</td>
+                    <td>{{ property.state }}</td>
+                    <td>{{ property.pincode }}</td>
+                    <td>{{ property.amount }}</td>
+                    <td>{{ property.status }}</td>
+                    <td>{{ property.owner }}</td>
+                    <td><a style="margin-left: 25px">{{ property.agent }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

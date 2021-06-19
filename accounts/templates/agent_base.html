@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/agent_base.css' %}">
+
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>agent_base</title>
+    {% endif %}
+</head>
+<body>
+  <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-bottom: 10px;">
+        <a class="navbar-brand" href="">Estate Real </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'agent_dash' %}">Home <span class="sr-only">(current)</span></a>
+            
+            
+            <a style="color: aliceblue; margin-top: 5px;position: absolute;right: 120px;" class="hello-msg">Hello, {{request.user}}</a>
+            <a  style=" position: absolute;right: 20px;margin-top: 5px;" class="hello-msg" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </div>
+    </nav>
+    <!-- Sidenav -->
+    <div class="sidenav">
+      <div class="card" style="width: 20rem; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title">Agent ID :{{agent.agent_id}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Username   :  {{request.user}}</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name : {{agent.first_name}} {{agent.last_name}}</li>
+                <li class="list-group-item">Email : {{agent.email}}</li>
+                <li class="list-group-item">Contact : {{agent.contact}}</li>
+            </ul>
+        </div>
+    </div>
+    <a href="{% url 'add_property' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Add Property</button></a>
+    <a href="{% url 'view_all_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">All Properties</button></a>
+    <a href="{% url 'agent_properties' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Agent Properties</button></a>
+    <a href="{% url 'view__buySell_transactions' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View  Buy Sell Transactions</button></a>
+    <a href="{% url 'view_rent_transactions' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">View  Rent Transactions</button></a>
+    <a href="{% url 'make_buy_sell_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Buy Sell Transaction</button></a>
+    <a href="{% url 'make_rent_transaction' %}"><button type="button" class="btn btn-dark" style="width: 20rem; margin: 10px;">Make a Rent Transaction</button></a>
+    
+    <br>
+    <br>
+    
+    </div>
+    <!-- content -->
+    <div class="main">
+        <div class="col-md-12 col-sm-12">
+          {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

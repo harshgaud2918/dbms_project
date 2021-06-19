@@ -1,0 +1,49 @@
+{% extends "agent_base.html" %}
+{% block content %}
+    <div class="card text-white bg-dark">
+        <h5 class="card-header">Add  User</h5>
+        <div class="card-body">
+        
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-md-6"><br>
+                <label for="validationDefault01" class="form-label">user_id</label>
+                <div>{{form.user_id}}</div>
+            </div><br>
+            <div class="col-md-6"><br>
+                <label for="validationDefault02" class="form-label"></label>
+                <div></div>
+            </div><br>
+            <!-- <div class="col-md-6"><br>
+                <label for="validationDefault02" class="form-label">username</label>
+                <div>{{form.username}}</div>
+            </div><br> -->
+            <div class="col-md-6"><br>
+                <label for="validationDefault03" class="form-label">first_name</label>
+                <div>{{form.first_name}}</div>
+            </div><br>
+            <div class="col-md-6"><br>
+                <label for="validationDefault04" class="form-label">last_name</label>
+                <div>{{form.last_name}}</div>
+            </div><br>
+            <div class="col-md-8"><br>
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <div>{{form.email}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault05" class="form-label">Contact No</label>
+                <div>{{form.contact}}</div>
+            </div><br>
+
+            <br>
+                </div><br>
+                <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div><br>
+        </form>
+        {{form.errors}}
+
+        </div>
+    </div>
+
+{% endblock content %}

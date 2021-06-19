@@ -1,0 +1,79 @@
+{% extends "agent_base.html" %}
+{% block content %}
+
+    <div class="card text-white bg-dark">
+        <h5 class="card-header">Property Details</h5>
+        <div class="card-body">
+        
+        <property class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-md-4"><br>
+            <label for="validationDefault01" class="property-label">Property_id</label>
+            <!-- <input type="text" class="property-control" id="validationDefault01" required> -->
+            <div>{{property.property_id}}</div>
+            </div>
+            <br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault02" class="property-label">Owner_id</label>
+            <div>{{property.owner}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault03" class="property-label">Agent_id</label>
+                <div>{{property.agent}}</div>
+                </div><br>
+            <div class="col-md-12"><br>
+            <label for="validationDefault04" class="property-label">Address</label>
+            <div>{{property.address}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault05" class="property-label">City</label>
+            <div>{{property.city}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault06" class="property-label">State</label>
+            <br>
+            <div>{{property.state}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault07" class="property-label">pincode</label>
+            <div>{{property.pincode}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault08" class="property-label">No. of bedrooms</label>
+            <br>
+            <div>{{property.no_of_bedrooms}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault09" class="property-label">Size (in sq. feet)</label>
+                <div>{{property.size}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault10" class="property-label">Type</label>
+                <div>{{property.type}}</div>
+            </div><br>
+
+            <div class="col-md-6"><br>
+                <label for="validationDefault11" class="property-label">Status</label>
+                <br>
+                <div>{{property.status}}</div>
+            </div><br>
+
+            <div class="col-md-6"><br>
+                <label for="validationDefault12" class="property-label">Amount</label>
+                <div>{{property.amount}}</div>
+            </div><br>
+
+            <br>
+            <br>
+            
+            <br>
+            <br>
+            <br>
+            
+            
+        </property>
+
+        </div>
+    </div>
+    
+{% endblock content %}

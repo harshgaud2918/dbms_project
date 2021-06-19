@@ -1,0 +1,115 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h1 style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Office Dashboard</h1>
+<br><br>
+
+    <div class="card text-white  col-md-12 mb-4" style="text-align: center;background-color: black;">
+        <br>
+        <h3 class="card-header bg-light text-dark">Properties</h3>
+        <br>
+        <div style="display: flex; justify-content: space-between;">
+            <div class="card text-white bg-light col-md-2 mb-4">
+                <br>
+                <h4 class="card-header bg-dark">For Sale</h4>
+                <h5 class="card-body text-dark bg-light "><b>{{forSale}}</b></h5>
+            </div>
+            <div class="card text-white bg-light col-md-2 mb-4">
+                <br>
+                <h4 class="card-header bg-dark">For Lease</h4>
+                <h5 class="card-body text-dark bg-light "><b> {{forLease}}</b></h5>
+            </div>
+            <div class="card text-white bg-light col-md-2 mb-4">
+                <br>
+                <h4 class="card-header bg-dark">Total</h4>
+                <h5 class="card-body text-dark bg-light "><b> {{total_properties}}</b></h5>
+            </div>
+            <div class="card text-white bg-light col-md-2 mb-4">
+                <br>
+                <h4 class="card-header bg-dark">On Lease</h4>
+                <h5 class="card-body text-dark bg-light "><b> {{onLease}}</b></h5>
+            </div>
+            <div class="card text-white bg-light col-md-2 mb-4">
+                <br>
+                <h4 class="card-header bg-dark">Sold</h4>
+                <h5 class="card-body text-dark bg-light "><b>{{sold}}</b></h5>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    
+    <div style="display: flex; text-align: center; justify-content: space-between;">
+
+       
+        
+        <div class="card text-white  col-md-3 mb-4" style="display: block;margin-left: auto;margin-right: auto;background-color: black;">
+            <br>
+            <h5 class="card-header  text-dark bg-light"style="background-color: black;" >Agents</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{total_agents}}</h5>
+            </div>
+        </div>
+
+       
+
+    
+
+       
+    </div>
+
+
+    <div style="display: flex; text-align: center; justify-content: space-between;">
+        <div class="card text-white  col-md-5 mb-4" style="background-color: black;">
+            <br>
+            <h5 class="card-header text-dark bg-light">Buy-Sell Transactions</h5>
+            <div style="display: flex;">
+                <div class="card-body">
+                    <h5 class="card-title">{{total_bsTrans}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card text-white  col-md-5 mb-4" style="background-color: black;">
+            <br>
+            <h5 class="card-header text-dark bg-light">Rent Transactions</h5>
+            <div style="display: flex;">
+                <div class="card-body">
+                    <h5 class="card-title">{{total_rentTrans}}</h5>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+
+    <br>
+    <br>
+    <div style="display: flex; text-align: center; justify-content: space-between;">
+        <div class="card text-white  col-md-3 mb-4" style="background-color: black;">
+            <br>
+            <h5 class="card-header text-dark bg-light"style="background-color: black;">Owners</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{total_owner}}</h5>
+            </div>
+        </div>
+
+        <div class="card text-white  col-md-3 mb-4" style="background-color: black;">
+            <br>
+            <h5 class="card-header text-dark bg-light"style="background-color: black;">Buyers</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{total_buyer}}</h5>
+            </div>
+        </div>
+
+        <div class="card text-white  col-md-3 mb-4" style="background-color: black;">
+            <br>
+            <h5 class="card-header text-dark bg-light"style="background-color: black;">Tenants</h5>
+            <div class="card-body">
+                <h5 class="card-title">{{total_tenant}}</h5>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+    

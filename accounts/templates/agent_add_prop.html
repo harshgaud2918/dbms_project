@@ -1,0 +1,81 @@
+{% extends "agent_base.html" %}
+{% block content %}
+
+    <div class="card text-white bg-dark">
+        <h5 class="card-header">Add / Update Property</h5>
+        <div class="card-body">
+        
+        <form class="row g-3" method="POST">
+            {% csrf_token %}
+            <div class="col-md-4"><br>
+            <label for="validationDefault01" class="form-label">Property_id</label>
+            <!-- <input type="text" class="form-control" id="validationDefault01" required> -->
+            <div>{{form.property_id}}</div>
+            </div>
+            <br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault02" class="form-label">Owner_id</label>
+            <div>{{form.owner}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault03" class="form-label">Agent_id</label>
+                <div>{{form.agent}}{{agent.agent_id}}</div>
+                </div><br>
+            <div class="col-md-12"><br>
+            <label for="validationDefault04" class="form-label">Address</label>
+            <div>{{form.address}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault05" class="form-label">City</label>
+            <div>{{form.city}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault06" class="form-label">State</label>
+            <br>
+            <div>{{form.state}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault07" class="form-label">pincode</label>
+            <div>{{form.pincode}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+            <label for="validationDefault08" class="form-label">No. of bedrooms</label>
+            <br>
+            <div>{{form.no_of_bedrooms}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault09" class="form-label">Size (in sq. feet)</label>
+                <div>{{form.size}}</div>
+            </div><br>
+            <div class="col-md-4"><br>
+                <label for="validationDefault10" class="form-label">Type</label>
+                <div>{{form.type}}</div>
+            </div><br>
+
+            <div class="col-md-6"><br>
+                <label for="validationDefault11" class="form-label">Status</label>
+                <br>
+                <div>{{form.status}}</div>
+            </div><br>
+
+            <div class="col-md-6"><br>
+                <label for="validationDefault12" class="form-label">Amount</label>
+                <div>{{form.amount}}</div>
+            </div><br>
+
+            <br>
+            <br>
+            {{form.errors}}
+            <br>
+            <br>
+            <br>
+            
+            <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit form</button>
+            </div><br>
+        </form>
+
+        </div>
+    </div>
+    
+{% endblock content %}
